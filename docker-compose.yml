@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  ubuntu_focal:
+    tty: true
+    build: ubuntu/20.04
+    restart: unless-stopped
+    container_name: ubuntu_focal
+    network_mode: bridge
+    environment:
+      - TZ=Asia/Shanghai
+    security_opt:
+      - seccomp=unconfined
+    cap_add:
+      - SYS_ADMIN
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
